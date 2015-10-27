@@ -18,7 +18,6 @@ int motion = 13;
 SimpleTimer motion_timer;
 
 void setup() {
-  
   int i = 0; 
   
   // Set digital inputs as outputs
@@ -36,9 +35,7 @@ void setup() {
 
 // Main Program
 void loop() {
-  
    motion_timer.run();
-   
 }
 
 
@@ -53,7 +50,6 @@ void check_motion(){
     triggered = 1;
     start_eyes();
   }
-  
 }
 
 
@@ -63,7 +59,6 @@ void start_eyes(){
   runtimes = runtimes + 1;
   Serial.print("RunTime: ");
   Serial.println( runtimes );
-  
   
   // Turn on leds randomly
   randomLEDon();
@@ -86,7 +81,7 @@ void led_on( int led_id ){
     
 };
 
-// tuen off led by id 
+// turn off led by id 
 void led_off( int led_id ){
 
     digitalWrite(led_id, LOW);
@@ -109,17 +104,14 @@ void randomLEDon()
   Serial.println( "Start Random ON" );
   for (int i=0; i<ledPinsNum; ++i)
   {
-    int led = random(0, ledPinsNum-i);    // select from a decreasing set
+    int led = random(0, ledPinsNum-i); // select from a decreasing set
     led_on( ledPins[led] );
     delay(500);
     Serial.print("LED: ");
     Serial.println( ledPins[led] );
     
-    
-    swap(led, (ledPinsNum-1)-i);             // switch the chosen one with the last of the selection set.
+    swap(led, (ledPinsNum-1)-i); // switch the chosen one with the last of the selection set.
   }  
-  //print_array();
-  
 }
 
 void swap(int a, int b)
@@ -127,16 +119,4 @@ void swap(int a, int b)
   int t = ledPins[a];
   ledPins[a] = ledPins[b];
   ledPins[b] = t;
-}
-
-void print_array(){
-  int i = 0;
-  
-  Serial.print( "Print Array: " );
-  for(i = 0; i<ledPinsNum; i++){
-    Serial.print( ledPins[i] );
-    Serial.print( "," );
-  }
-  Serial.println( "" );
-  Serial.println( "END array" );
 }
